@@ -1,0 +1,13 @@
+{
+  "name": "screepsmod-dynamicMarket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "screeps_mod": true,
+  "keywords": [
+    "screeps",
+    "mod"
+  ],
+  "author": "Bob Sardinia",
+  "license": "MIT"
+}
