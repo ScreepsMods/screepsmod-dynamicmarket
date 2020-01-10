@@ -8,7 +8,7 @@ module.exports.settings = {
   // 'random' - Prices are random but close to what is set here.
   // NOTES
   // To remove resources set the prices as 0
-  marketType: 'fixed',
+  marketType: 'dynamic',
   // Set the base sell prices
   sellPrices: {
     H: 2.5,
