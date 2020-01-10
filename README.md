@@ -1,10 +1,10 @@
-# screepsmod-dynamicMarket
+# screepsmod-dynamicmarket
 
-[![NPM info](https://nodei.co/npm/screepsmod-dynamicMarket.png?downloads=true)](https://npmjs.org/package/screepsmod-dynamicMarket)
+[![NPM info](https://nodei.co/npm/screepsmod-dynamicmarket.png?downloads=true)](https://npmjs.org/package/screepsmod-dynamicmarket)
 
 # Installation 
 
-1. `npm install screepsmod-dynamicMarket` in your mods folder. / (Or use steam workshop)
+1. `npm install screepsmod-dynamicmarket` in your mods folder. / (Or use steam workshop)
 2. Configure!
 
 # Features
