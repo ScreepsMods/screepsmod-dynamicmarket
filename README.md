@@ -1,7 +1,5 @@
 # screepsmod-dynamicMarket
 
-## Screeps Private Server Alternate NPC Market Mod
-
 [![NPM info](https://nodei.co/npm/screepsmod-dynamicMarket.png?downloads=true)](https://npmjs.org/package/screepsmod-dynamicMarket)
 
 # Installation 
@@ -11,7 +9,9 @@
 
 # Features
 
+- THIS NEEDS A LOT OF TESTING THAT I CANNOT DO ON A SOLO SERVER
 - Dynamic simulated supply and demand. NPC terminals prices will fluctuate depending on how much of a resource is being bought or sold.
+- Supports basic fixed/random pricing
 
 # Upcoming Features
 
