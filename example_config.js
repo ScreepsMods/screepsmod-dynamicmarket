@@ -111,10 +111,10 @@ module.exports.settings = {
     emanation: 6500,
     essence: 12500
   },
-  // Set the base order amounts (These fluctuate in dynamic market types)
-  sellAmount: 1000000,
-  buyAmount: 1000000,
+  // Set the base order amounts (These fluctuate in dynamic market types and with the number of player terminals ingame)
+  sellAmount: 25000, // Consider this a "per user amount" as it is multiplied by the number of active player terminals
+  buyAmount: 50000, // Consider this a "per user amount" as it is multiplied by the number of active player terminals
   // Dynamic market settings (Dynamic market is on a NPC terminal room by room basis)
-  tradingPeriod: 5000, // The period in which trading is considered for price changes
-  saturationPoint: 2000 // ~This amount (some randomness here) triggers market oversaturation, this should be low for small servers and remember it scales for the expensive commodities
+  tradingPeriod: 1000, // The period in which trading is considered for price changes
+  saturationPoint: 2000 // ~This amount (some randomness here) triggers market oversaturation, this also automatically scales with terminal count
 }
