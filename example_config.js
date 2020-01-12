@@ -1,7 +1,12 @@
 module.exports.settings = {
   // Configure and rename this to 'config.js'
   randomMarketEvents: false, // Not yet implemented
-  randomBoostSales: false, // Not yet implemented
+  randomBoostSales: false, // Random chance a boost sells (higher tier boosts have a lower chance of appearing) for 1000 ticks
+    randomBoostPrices: { // Set prices to 0 to not sell that tier
+        0: 0.25, // Tier 1 boosts
+        1: 0.5, // Tier 2 boosts
+        2: 1.5 // Tier 3 boosts
+    },
   // Market Types
   // 'fixed' - Prices do not change from the settings below.
   // 'dynamic' - Prices/demand fluctuate based off supply. (Advanced settings at the bottom)
