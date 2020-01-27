@@ -20,7 +20,7 @@
 - NPC Resell (NPC terminals will resell a portion of the resources it buys, competing with players)
 
 # Config
-Config is done via `example_config.js`. Be sure to rename the file to `config.js`. (Or don't, the defaults should work fine)
+Config is done via `example_dynamicMarketConfig.js`. Be sure to rename the file to `dynamicMarketConfig.js`. (Or don't, the defaults should work fine)
 
 # Credits
 Based off screepsmod-market by ags131 (https://github.com/ScreepsMods/screepsmod-market)
