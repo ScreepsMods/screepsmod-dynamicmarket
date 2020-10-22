@@ -52,30 +52,54 @@ customConfig.buyPrices = setBuyPrices(DEFAULTS.basePrices, DEFAULTS.commodityMar
 
 function setSellPrices(basePrices, marketPriceRatio) {
     let sellPrices = {};    
-    for (var res in baseMinerals) {
+    for (let res in baseMinerals) {
         if (!basePrices[res]) { continue; }
         sellPrices[res] = basePrices[res] * marketPriceRatio;
     }
     return sellPrices;
-}​
-function setBuyPrices(basePrices, commodityMarkup) {
+}
+const commodities = {
+    "utrium_bar":{"U":5,"energy":2},"lemergium_bar":{"L":5,"energy":2},"zynthium_bar":{"Z":5,"energy":2},"keanium_bar":{"K":5,"energy":2},"ghodium_melt":{"U":5,"L":5,"K":5,"Z":5,"energy":2},
+    "oxidant":{"O":5,"energy":2},"reductant":{"H":5,"energy":2},"purifier":{"X":5,"energy":2},
+    "composite":{"utrium_bar":1,"energy":1,"zynthium_bar":1},"crystal":{"lemergium_bar":1,"energy":7.5,"keanium_bar":1,"purifier":1},"liquid":{"oxidant":1,"energy":7.5,"reductant":1,"ghodium_melt":1},
+    "wire":{"utrium_bar":1,"energy":2,"silicon":5},"switch":{"utrium_bar":7,"energy":4,"wire":8,"oxidant":19},"transistor":{"energy":8,"switch":4,"wire":15,"reductant":85},"microchip":{"transistor":2, "composite":50, "wire":117, "purifier": 25, "energy": 16},"circuit":{"microchip":1, "transistor":5, "switch":4, "oxidant":115, "energy": 32},"device":{"circuit":1, "microchip":3, "crystal":110, "ghodium_melt":150, "energy": 64},
+    "cell":{"lemergium_bar":1,"energy":2,"biomass":5},"phlegm":{"lemergium_bar":8,"energy":4,"cell":10,"oxidant":18},"tissue":{"cell":5,"phlegm":5,"reductant":55,"energy":8},"muscle":{"tissue":3,"phlegm":3,"zynthium_bar":50,"reductant":50,"energy":16},"organoid":{"muscle":1,"tissue":5,"purifier":208,"oxidant":256,"energy":32},"organism":{"organoid":1,"liquid":150,"tissue":6,"cell":310,"energy":64},
+    "alloy":{"zynthium_bar":1,"energy":2,"metal":5},"tube":{"zynthium_bar":8,"energy":4,"alloy":20},"fixtures":{"composite":20,"alloy":41,"oxidant":161,"energy":8},"frame":{"fixtures":2,"tube":4,"reductant":330,"zynthium_bar":31,"energy":16},"hydraulics":{"liquid":150,"fixtures":3,"tube":15,"purifier":208,"energy":32},"machine":{"hydraulics":1,"frame":2,"fixtures":3,"tube":12,"energy":64},
+    "condensate":{"keanium_bar":1,"energy":2,"mist":5},"concentrate":{"condensate":10,"keanium_bar":5,"reductant":18,"energy":4},"extract":{"concentrate":5,"condensate":15,"oxidant":30,"energy":8},"spirit":{"extract":2,"concentrate":6,"reductant":90,"purifier":20,"energy":16},"emanation":{"spirit":2,"extract":2,"concentrate":3,"keanium_bar":112,"energy":32},"essence":{"emanation":1,"spirit":3,"crystal":110,"ghodium_melt":150, "energy": 64}
+}
+
+function setBuyPrices(basePrices) {
     let buyPrices = {};
-    
-    const compounds = {"utrium_bar":{"U":5,"energy":2},"lemergium_bar":{"L":5,"energy":2},"zynthium_bar":{"Z":5,"energy":2},"keanium_bar":{"K":5,"energy":2},"ghodium_melt":{"U":5,"L":5,"K":5,"Z":5,"energy":2},"oxidant":{"O":5,"energy":2},"reductant":{"H":5,"energy":2},"purifier":{"X":5,"energy":2},"composite":{"U":5,"energy":5,"Z":5},"crystal":{"L":5,"energy":13.5,"K":5,"X":5},"liquid":{"O":5,"energy":13.5,"H":5,"U":5,"L":5,"K":5,"Z":5},"wire":{"U":5,"energy":4,"silicon":5},"switch":{"U":75,"energy":88,"silicon":40,"O":95},"transistor":{"U":375,"energy":590,"silicon":235,"O":380,"H":425},"microchip":{"U":1585,"energy":1964,"silicon":1055,"O":760,"H":850,"Z":250,"X":125},"circuit":{"U":3760,"energy":5528,"silicon":2390,"O":3615,"H":2975,"Z":250,"X":125},"device":{"U":9265,"energy":13269,"silicon":5555,"O":5895,"H":5525,"Z":1750,"X":1050,"L":1300,"K":1300},"cell":{"L":5,"energy":4,"biomass":5},"phlegm":{"L":90,"energy":96,"biomass":50,"O":90},"tissue":{"L":475,"energy":618,"biomass":275,"O":450,"H":275},"muscle":{"L":1695,"energy":2358,"biomass":975,"O":1620,"H":1075,"Z":250},"organoid":{"L":4070,"energy":6408,"biomass":2350,"O":5150,"H":2450,"Z":250,"X":1040},"organism":{"L":9220,"energy":13445,"biomass":5550,"O":8600,"H":4850,"Z":1000,"X":1040,"U":750,"K":750},"alloy":{"Z":5,"energy":4,"metal":5},"tube":{"Z":140,"energy":100,"metal":100},"fixtures":{"U":100,"energy":594,"Z":305.00000000000006,"metal":205.00000000000003,"O":805},"frame":{"U":200,"energy":2326,"Z":1325,"metal":810,"O":1610,"H":1650.0000000000002},"hydraulics":{"O":3165,"energy":5755,"H":750,"U":1050,"L":750,"K":750,"Z":3765,"metal":2115,"X":1040},"machine":{"O":8800,"energy":13453,"H":4050.0000000000005,"U":1750,"L":750,"K":750,"Z":9010,"metal":5550,"X":1040},"condensate":{"K":5,"energy":4,"mist":5},"concentrate":{"K":75,"energy":90,"mist":50,"H":90},"extract":{"K":450,"energy":578,"mist":325,"H":449.99999999999994,"O":150},"spirit":{"K":1350,"energy":1932,"mist":950,"H":1890,"O":300,"X":100},"emanation":{"K":4385,"energy":5546,"mist":2700,"H":4950,"O":900,"X":200},"essence":{"K":9735,"energy":13191,"mist":5550,"H":10620,"O":1800,"X":1050,"L":1300,"U":750,"Z":750}}
-    for (var res in basePrices) {
+    for (let res in basePrices) {
         if (!basePrices[res]) { continue; }
         buyPrices[res] = basePrices[res];
     }
-    
-    for (var res in compounds) {
-        var commodity = compounds[res]
-        buyPrices[res] = 0;
-        for (var ingredient in commodity) {
-            if (!basePrices[ingredient]) { continue; }
-            buyPrices[res] += commodity[ingredient] * basePrices[ingredient];
-        }
-        buyPrices[res] *= commodityMarkup;
+    // Loop thru commodities to set their prices based on ingredient cost
+    for (let commodity in commodities) {
+        buyPrices[commodity] = getCommoditiesPrice(commodity, basePrices, buyPrices);
     }
     return buyPrices;
 }
+
+function getCommoditiesPrice(commodity, basePrices, buyPrices) {
+    // If we already have it return it otherwise loop thru ingredients
+    if (buyPrices[commodity]) return buyPrices[commodity];
+    for (let ingredient in commodity) {
+        if (buyPrices[ingredient]) {
+            buyPrices[commodity] += (buyPrices[ingredient] * commodity[ingredient]);
+        } else {
+            buyPrices[ingredient] = 0;
+            if (!basePrices[ingredient]) { continue; }
+            // If the ingredient is a commodity, get its price based on ingredients
+            if (commodities[ingredient]) {
+                buyPrices[commodity] += (getCommoditiesPrice(ingredient, basePrices, buyPrices) * commodity[ingredient]);
+            } else {
+                buyPrices[commodity] += (basePrices[ingredient] * commodity[ingredient]);
+            }
+        }
+    }
+    buyPrices[commodity] *= DEFAULTS.commodityMarkup;
+    return buyPrices[commodity];
+}
+
 module.exports = { settings: customConfig }
